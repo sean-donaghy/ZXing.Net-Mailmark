@@ -61,7 +61,7 @@ namespace ZXing.Datamatrix.Encoder
                 int count = buffer.Length;
                 if ((count % 3) == 0)
                 {
-                    int newMode = HighLevelEncoder.lookAheadTest(context.Message, context.Pos, EncodingMode);
+                    int newMode = CheckForMoreEffectiveEncodingMode(context);
                     if (newMode != EncodingMode)
                     {
                         // Return to ASCII encodation, which will actually handle latch to new mode
@@ -71,6 +71,11 @@ namespace ZXing.Datamatrix.Encoder
                 }
             }
             handleEOD(context, buffer);
+        }
+
+        protected virtual int CheckForMoreEffectiveEncodingMode(EncoderContext context)
+        {
+            return HighLevelEncoder.lookAheadTest(context.Message, context.Pos, EncodingMode);
         }
 
         private int backtrackOneCharacter(EncoderContext context,

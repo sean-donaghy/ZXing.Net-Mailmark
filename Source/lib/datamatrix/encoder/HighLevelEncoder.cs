@@ -151,7 +151,8 @@ namespace ZXing.Datamatrix.Encoder
             Encoder[] encoders =
                {
                new ASCIIEncoder(), new C40Encoder(), new TextEncoder(),
-               new X12Encoder(), new EdifactEncoder(), new Base256Encoder()
+               new X12Encoder(), new EdifactEncoder(), new Base256Encoder(),
+               new C40EncoderMailMark()
             };
 
             var context = new EncoderContext(msg);
